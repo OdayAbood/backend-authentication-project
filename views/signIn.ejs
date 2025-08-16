@@ -1,0 +1,49 @@
+<%- include('./prtials/head.ejs') %>
+<body>
+    <%- include('./prtials/Link.ejs') %>
+    <form action="">
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email">
+        <div class="email error"></div>
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password">
+        <div class="password error"></div>
+        <input class="submit" type="submit" value="SignIp">
+    </form>
+    <script>
+        let mysubmit = document.querySelector(".submit");
+
+        const form = document.querySelector("form");
+        form.email.value = " ";
+        form.password.value = " ";
+
+        form.addEventListener("submit" , async (e)=>{
+            e.preventDefault();
+            const email = form.email.value ;
+            const password = form.password.value ;
+            const emailer = document.querySelector(".email.error");
+            const passworder = document.querySelector(".password.error");
+            emailer.innerHTML = " ";
+            passworder.innerHTML = " ";
+            try{
+                const res = await fetch("/signin" , {
+                    method:"post",
+                    body:JSON.stringify({ email , password}),
+                    headers:{'Content-Type' : 'application/json '}
+                })
+                const data = await res.json();
+                if(data.notExist){
+                    emailer.innerHTML = data.notExist;
+                }
+                if(data.passwordFaild){
+                    passworder.innerHTML = data.passwordFaild;
+                }
+                if(data.redirect)
+                location.assign(data.redirect)
+            }
+            catch(err){
+                console.log(err)
+            }
+        })
+    </script>
+</body>

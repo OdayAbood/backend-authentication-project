@@ -1,0 +1,12 @@
+<ul>
+        <h1><li><a href="/">Smoothe Page</a></li></h1>
+        <div>
+            <% if(user) { %>
+            <li class="name">Hello <%= user.firstname%> <%=user.lastname%></li>
+            <li><a href="/logout">LogOut</a></li>
+            <% } else { %>
+                <li><a href="/signin">SignIn</a></li>
+                <li><a href="/signup">SignUp</a></li>
+            <% } %>
+        </div>
+</ul>
