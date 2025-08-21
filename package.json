@@ -60,7 +60,8 @@
     "lodash.includes": "^4.3.0",
     "lodash.isboolean": "^3.0.3",
     "lodash.isinteger": "^4.0.4",
-    "mongoose": "^8.17.2"
+    "mongoose": "^8.17.2",
+    "validator": "^13.15.15"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
